@@ -32,38 +32,46 @@ public class Report {
 
     public ExtentTest createTestReport(WebDriver driver, Method method) {
         this.driver = driver;
-        extentTest = extentReports.createTest(getTestNameAndDescription(method));
+        extentTest = extentReports.createTest(getTestName(method),getCustomTestDescription(method));
         return extentTest;
     }
 
-    public void logInfo(Object object){
-        extentTest.info(MarkupHelper.createJsonCodeBlock(object));
+    public void logExpectedResult(String expectedResult) {
+        extentTest.info("Expected Result: " + expectedResult);
     }
 
-    public void logScreenshot(String title) {
-        extentTest.pass(title, MediaEntityBuilder.createScreenCaptureFromBase64String(Screenshot.takeScreenshot(driver)).build());
+        public void logScreenshot (String title){
+            extentTest.pass(title, MediaEntityBuilder.createScreenCaptureFromBase64String(Screenshot.takeScreenshot(driver)).build());
 
-    }
-    public void logTestResult(ITestResult result){
-        if (result.getStatus() == ITestResult.SUCCESS){
-            extentTest.pass("TEST PASSED");
-        }else if (result.getStatus() == ITestResult.FAILURE){
-            extentTest.fail("TEST FAILED");
-            logScreenshot("Screenshot");
-            extentTest.fail(result.getThrowable());
+        }
+        public void logTestResult (ITestResult result){
+            if (result.getStatus() == ITestResult.SUCCESS) {
+                extentTest.pass("TEST PASSED");
+            } else if (result.getStatus() == ITestResult.FAILURE) {
+                extentTest.fail("TEST FAILED");
+                logScreenshot("Screenshot");
+                extentTest.fail(result.getThrowable());
+            }
+        }
+        public String getTestName (Method method){
+            Test testDetails = method.getAnnotation(Test.class);
+            if (!testDetails.testName().isEmpty()) {
+                return testDetails.testName();
+            } else {
+                return method.getName();
+            }
+        }
+
+        public void setAuthor (String author){
+            extentTest.assignAuthor(author);
+        }
+
+    public String getCustomTestDescription(Method method) {
+        Test testClass = method.getAnnotation(Test.class);
+        if (!testClass.description().isEmpty()) {
+            return testClass.description();
+        } else {
+            return "";
         }
     }
-    public String getTestNameAndDescription(Method method){
-        Test testDetails = method.getAnnotation(Test.class);
-        Test testDescription = method.getAnnotation(Test.class);
-        if (!testDetails.testName().isEmpty() && !testDescription.description().isEmpty()){
-            return testDetails.testName() + testDescription.description();
-        }else {
-            return method.getName();
-        }
     }
-
-    public void setAuthor(String author) {
-        extentTest.assignAuthor(author);
-    }
-}
