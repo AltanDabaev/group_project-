@@ -15,9 +15,6 @@ public class HomePage {
     @FindBy(id = "react-burger-menu-btn")
     public WebElement navMenuButton;
 
-//    @FindBy(className = "bm-item menu-item")
-//    public List<WebElement> navMenuItems;
-
     @FindBy(id = "about_sidebar_link")
     public WebElement about;
 

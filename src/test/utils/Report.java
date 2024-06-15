@@ -32,15 +32,11 @@ public class Report {
 
     public ExtentTest createTestReport(WebDriver driver, Method method) {
         this.driver = driver;
-        extentTest = extentReports.createTest(getTestName(method));
+        extentTest = extentReports.createTest(getTestNameAndDescription(method));
         return extentTest;
     }
 
-    public void logInfo(String info) {
-        extentTest.info(info);
-    }
-
-    public void logInfo(Object object) {
+    public void logInfo(Object object){
         extentTest.info(MarkupHelper.createJsonCodeBlock(object));
     }
 
@@ -57,12 +53,17 @@ public class Report {
             extentTest.fail(result.getThrowable());
         }
     }
-    public String getTestName(Method method){
+    public String getTestNameAndDescription(Method method){
         Test testDetails = method.getAnnotation(Test.class);
-        if (!testDetails.testName().isEmpty()){
-            return testDetails.testName();
+        Test testDescription = method.getAnnotation(Test.class);
+        if (!testDetails.testName().isEmpty() && !testDescription.description().isEmpty()){
+            return testDetails.testName() + testDescription.description();
         }else {
             return method.getName();
         }
+    }
+
+    public void setAuthor(String author) {
+        extentTest.assignAuthor(author);
     }
 }

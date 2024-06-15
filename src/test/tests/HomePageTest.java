@@ -5,20 +5,27 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LoginPage;
 import utils.BrowserUtils;
 
 
 public class HomePageTest extends BaseTest{
 
     private HomePage homePage;
+    private LoginPage loginPage;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(){
         homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        loginPage.Login();
+        report.setAuthor("Marianna");
     }
 
-    @Test(testName = "US304: Navigation menu")
-    public void US304() throws InterruptedException {
+    @Test(testName = "US304: Navigation menu", description = "When user " +
+            "clicks the navigation menu button, 4 options should be displayed: All items," +
+            "About, Logout, Reset App State")
+    public void US304() {
         homePage.navMenuButton.click();
         new BrowserUtils(driver).waitForVisibilityOf(homePage.allItems);
         Assert.assertTrue(homePage.allItems.isDisplayed());
@@ -31,6 +38,8 @@ public class HomePageTest extends BaseTest{
     public void US305(){
        String expectedText = "© 2024 Sauce Labs. All Rights Reserved. " +
                "Terms of Service | Privacy Policy";
+
+       report.logInfo(expectedText);
        Assert.assertEquals(homePage.footer.getText(), expectedText);
     }
 
