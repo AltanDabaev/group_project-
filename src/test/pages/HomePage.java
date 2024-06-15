@@ -10,7 +10,8 @@ import java.util.List;
 
 public class HomePage {
 
-    public HomePage(WebDriver driver){PageFactory.initElements(driver, this);
+    public HomePage(WebDriver driver){
+        PageFactory.initElements(driver, this);
     }
     @FindBy(id = "react-burger-menu-btn")
     public WebElement navMenuButton;
