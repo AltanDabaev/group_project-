@@ -1,15 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import tests.BaseTest;
-import utils.ConfigReader;
-
-import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends BaseTest {
     public LoginPage(WebDriver driver){
@@ -33,5 +28,4 @@ public class LoginPage extends BaseTest {
         passwordInputField.sendKeys("secret_sauce");
         loginBtn.click();
     }
-
 }
