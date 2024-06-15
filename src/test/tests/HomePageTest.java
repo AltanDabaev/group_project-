@@ -39,7 +39,8 @@ public class HomePageTest extends BaseTest{
                 ", " + homePage.resetAppState.getText() + " are displayed";
     }
 
-    @Test(testName = "US305: Footer Text Test")
+    @Test(testName = "US305: Footer Text Test", description = "Verify footer of " +
+            "the homepage matches the expected result")
     public void US305(){
        String expectedText = "© 2024 Sauce Labs. All Rights Reserved. " +
                "Terms of Service | Privacy Policy";
@@ -48,7 +49,8 @@ public class HomePageTest extends BaseTest{
        expectedResult = "Footer text is " + expectedText;
     }
 
-    @Test(testName = "US306: Filter Options")
+    @Test(testName = "US306: Filter Options", description = "When user clicks the filter " +
+            "it should have 4 options")
     public void US306(){
         homePage.filterButton.click();
         Assert.assertEquals(homePage.filterOptions.size(), 4);
@@ -62,7 +64,8 @@ public class HomePageTest extends BaseTest{
                 "Price (high to low)";
     }
 
-    @Test(testName = "US307: Social media buttons")
+    @Test(testName = "US307: Social media buttons", description = "Verify 3 social media " +
+            "buttons are present: twitter, facebook and linkedIn")
     public void US307() {
         Assert.assertEquals(homePage.socialMediaButtons.size(), 3);
         Assert.assertEquals(homePage.socialMediaButtons.get(0).getText(), "Twitter");
