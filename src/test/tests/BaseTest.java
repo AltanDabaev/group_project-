@@ -29,10 +29,7 @@ public class BaseTest {
         driver.get(ConfigReader.readProperty("config.properties", "url"));
         report.createTestReport(driver,method);
         driver.get("https://www.saucedemo.com/");
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
 
-        driver.findElement(By.id("login-button")).click();
     }
 
     @AfterMethod
