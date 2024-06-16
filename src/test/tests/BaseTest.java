@@ -2,7 +2,6 @@ package tests;
 
 import com.aventstack.extentreports.ExtentTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -29,7 +28,6 @@ public class BaseTest {
         driver.get(ConfigReader.readProperty("config.properties", "url"));
         report.createTestReport(driver,method);
         driver.get("https://www.saucedemo.com/");
-
     }
 
     @AfterMethod
@@ -61,4 +59,5 @@ public class BaseTest {
     public void endReport(){
         report.closeReport();
     }
+
 }
