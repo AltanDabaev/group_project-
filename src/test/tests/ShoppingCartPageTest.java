@@ -1,4 +1,5 @@
 package tests;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ShoppingCartPageTest extends BaseTest {
 
     private ShoppingCartPage cartPage;
+    public String expectedResult;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
@@ -36,21 +38,17 @@ public class ShoppingCartPageTest extends BaseTest {
         Thread.sleep(1000);
         cartPage.allItems.get(0).isDisplayed();
         cartPage.removeBtn.click();
-        List<WebElement>list=cartPage.allItems;
-        Assert.assertEquals(list.size(),0);
+        expectedResult="expected 0 items";
+        List<WebElement> list = cartPage.allItems;
+        Assert.assertEquals(list.size(), 0);
 
-//        driver.findElement(By.className("inventory_item_name")).click();
-//        driver.findElement(By.xpath("//a[@class='shopping_cart_link']")).click();
-//        //driver.findElement(By.xpath("//div[@class=:'inventory_item_name']")).getText();
-//        String actual = driver.findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
-//        driver.findElement(By.name("remove-sauce-labs-backpack")).click();
-//        //String  actual =driver.findElement(By.xpath("//div[@class='inventory_item_name']")).getText();
-//        Assert.assertEquals(actual, 0);
-//        @AfterMethod
-//        public void end(){
-//            report.logExpectedResult(expectedResult);
+        }
+        @AfterMethod
+        public void end () {
+            report.logExpectedResult(expectedResult);
         }
     }
+
 
 
 
