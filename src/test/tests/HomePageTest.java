@@ -1,6 +1,5 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -20,8 +19,8 @@ public class HomePageTest extends BaseTest{
     @Test(testName = "US304: Navigation menu")
     public void US304() throws InterruptedException {
         homePage.navMenuButton.click();
-        new BrowserUtils(driver).waitForVisibilityOf(homePage.allItems);
-        Assert.assertTrue(homePage.allItems.isDisplayed());
+        new BrowserUtils(driver).waitForVisibilityOf(homePage.item);
+        Assert.assertTrue(homePage.item.isDisplayed());
         Assert.assertTrue(homePage.about.isDisplayed());
         Assert.assertTrue(homePage.logout.isDisplayed());
         Assert.assertTrue(homePage.resetAppState.isDisplayed());

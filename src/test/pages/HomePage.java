@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +22,7 @@ public class HomePage {
     public WebElement about;
 
     @FindBy(id = "inventory_sidebar_link")
-    public WebElement allItems;
+    public WebElement item;
 
     @FindBy(id = "logout_sidebar_link")
     public WebElement logout;
