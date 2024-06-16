@@ -28,12 +28,12 @@ public class HomePageTest extends BaseTest{
             "About, Logout, Reset App State")
     public void US304() {
         homePage.navMenuButton.click();
-        new BrowserUtils(driver).waitForVisibilityOf(homePage.allItems);
-        Assert.assertTrue(homePage.allItems.isDisplayed());
+        new BrowserUtils(driver).waitForVisibilityOf(homePage.item);
+        Assert.assertTrue(homePage.item.isDisplayed());
         Assert.assertTrue(homePage.about.isDisplayed());
         Assert.assertTrue(homePage.logout.isDisplayed());
         Assert.assertTrue(homePage.resetAppState.isDisplayed());
-         expectedResult = "Navigation menu options " + homePage.allItems.getText() +
+         expectedResult = "Navigation menu options " + homePage.item.getText() +
                 ", " + homePage.about.getText() +
                 ", " + homePage.logout.getText() +
                 ", " + homePage.resetAppState.getText() + " are displayed";

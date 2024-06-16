@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +9,8 @@ import java.util.List;
 
 public class HomePage {
 
-    public HomePage(WebDriver driver){PageFactory.initElements(driver, this);
+    public HomePage(WebDriver driver){
+        PageFactory.initElements(driver, this);
     }
     @FindBy(id = "react-burger-menu-btn")
     public WebElement navMenuButton;
@@ -19,7 +19,7 @@ public class HomePage {
     public WebElement about;
 
     @FindBy(id = "inventory_sidebar_link")
-    public WebElement allItems;
+    public WebElement item;
 
     @FindBy(id = "logout_sidebar_link")
     public WebElement logout;
